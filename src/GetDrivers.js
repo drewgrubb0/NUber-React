@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 
 class GetDrivers extends Component
 {
@@ -27,6 +26,7 @@ class GetDrivers extends Component
     {
         var get = {
             mode: 'cors',
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ class GetDrivers extends Component
 
         }
 
-        fetch('https://nuber-rest.herokuapp.com/customer', get)
+        fetch('https://nuber-restwithcors.herokuapp.com/customer', get)
             .then(function (res)
             {
                 return res.json();
@@ -55,7 +55,6 @@ class GetDrivers extends Component
                         </div>
                     )
                });
-
                this.setState({
                   drivers,
                    id: ""
@@ -78,12 +77,12 @@ class GetDrivers extends Component
         var body = JSON.stringify({
             name: "Joe Bob",
             address: "601 University Dr, San Marcos, TX 78666",
-            id: this.state.id
+            driverID: this.state.id
         })
 
         var options = {
             mode: 'cors',
-            method: 'post',
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -91,7 +90,7 @@ class GetDrivers extends Component
             body: body
         }
 
-        fetch('https://nuber-rest.herokuapp.com/customer', options)
+        fetch('https://nuber-restwithcors.herokuapp.com/customer', options)
             .then(response => {
                 console.log(response, "Driver is on the way!");
                 this.getDrivers();
